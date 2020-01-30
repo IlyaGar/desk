@@ -1,0 +1,20 @@
+<ng-container *ngIf="isLogin">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['desk']"> 
+                        Desk 
+                    </a>
+                </li>
+            </ul>
+            <div class="form-inline my-2 my-lg-0" *ngIf="isLogin">
+                <span id="hello-name"> Здравствуйте, {{loginResponse.cn}} </span>
+                <button type="button" id="login" class="btn btn-secondary" (click)="onLogOut()">Выйти</button>
+            </div>         
+        </div>
+    </nav>
+</ng-container>

@@ -1,0 +1,124 @@
+.desk {
+    width: 80%;
+    /* height: 85.6vh; */
+
+    margin: auto;
+    margin-top: 1em;
+}
+.content  {
+    height: calc(85.6vh - 80px);
+
+    padding: 0.5em 0.2em;
+    margin-bottom: 0.5em;
+    
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 15px;    
+}
+.content-with-image  {
+    height: calc(85.6vh - 174px);
+
+    padding: 0.5em 0.2em;
+    margin-bottom: 0.5em;
+    
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 15px;    
+}
+a {
+    width: 90%;
+}
+p {
+    width: 85%; 
+}
+.scrollbar-box {
+    padding: 0 1em;
+}
+textarea {
+    min-height: 3em;
+    max-height: 4.5em;
+
+    border: 1px solid rgb(128, 128, 128, 0.4);
+    border-radius: 15px;
+}
+textarea:hover {
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 15px;
+}
+.round{
+    border-bottom-right-radius:15px;
+    border-bottom-left-radius:15px;
+   -moz-border-radius-bottomright:15px;
+   -moz-border-radius-bottomleft:15px;
+   -webkit-border-bottom-right-radius:15px;
+   -webkit-border-bottom-left-radius:15px;
+
+    -moz-border-radius-topright:15px;
+    -moz-border-radius-topleft:15px;
+    -webkit-border-top-right-radius:15px;
+    -webkit-border-top-left-radius:15px;
+    border-top-right-radius:15px;
+    border-top-left-radius:15px;
+}
+.round-but-input{
+    border-bottom-right-radius:15px;
+   -moz-border-radius-bottomright:15px;
+   -webkit-border-bottom-right-radius:15px;
+
+    -moz-border-radius-topright:15px;
+    -webkit-border-top-right-radius:15px;
+    border-top-right-radius:15px;
+}
+.mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
+    background-color: #683ab7;
+}
+.mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary:hover {
+    background-color: #683ab7d5;
+}
+.white-active > p, .white-active > small, .white-active small, .white-active h5 {
+    color: whitesmoke;
+}
+.desk a {
+    border-radius: 12px;
+    margin-bottom: 0.2em;
+}
+.desk a:hover {
+    cursor: pointer;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgba(135, 206, 250, 0.85);
+}  
+::ng-deep .custom-scrollbars {
+    background-color: rgb(94, 175, 255) !important;
+}
+::ng-deep .custom-scrollbars:hover, ::ng-deep .custom-scrollbars:active {
+    background-color: dodgerblue !important;
+}
+mat-icon#push {
+    position: relative;
+    top:-30px;
+    right: 10px;
+}
+img {
+    border: 1px solid rgb(128, 128, 128, 0.4);
+    border-radius: 10px;
+    margin: 0.2em;
+    width: 150px;
+}
+img:hover {
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 10px;
+    margin-right: 0.2em;
+}
+mat-icon#push:hover {
+    font-size: 26px;
+    color: blueviolet;
+
+    cursor: pointer;
+}
+mat-icon#push48:hover {
+    font-size: 50x;
+    color: blueviolet;
+
+    cursor: pointer;
+}
+.image-container {
+    margin-bottom: 0.4em;
+}

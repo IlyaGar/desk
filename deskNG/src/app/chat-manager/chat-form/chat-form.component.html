@@ -1,0 +1,62 @@
+<div class="desk">
+    <div [ngClass]="{ 'content': !isImageLoad, 'content-with-image': isImageLoad }">
+        <ng-scrollbar 
+                #scrollable 
+                [visibility]="'hover'" 
+                thumbClass="custom-scrollbars">   
+            <div #scrol  class="list-group scrollbar-box" *ngFor="let item of listMessage; let i = index">
+                <a class="list-group-item list-group-item-action" [ngClass]="{ 'active': i === selected, 'white-active': i === selected }" (click)="selected == i ? selected = null : selected = i">
+                    <small><div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1"> {{item.messageText}} </p>
+                        <small> {{item.date}} </small>
+                    </div>
+                    <small> {{item.autor}} </small>
+                    <ng-container *ngIf="item.pictures">
+                        <ng-container *ngIf="item.pictures.length > '0'">
+                            <div class="form-inline">
+                                <div class="form-inline" *ngFor="let image of item.pictures">
+                                    <mat-icon id="push48" class="icon48" (click)="onOpenImageForm('undefined', image)">image</mat-icon>
+                                    <!-- <img [src]="url"> -->
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </small>
+                </a>
+            </div>
+        </ng-scrollbar> 
+    </div>
+    <div>
+
+        <div class="form-inline image-container" *ngIf="isImageLoad">
+            <div *ngIf="urls[0]">
+                <img [src]="urls[0]" (click)="onOpenImageForm(0, 'undefined')">
+                <mat-icon id="push" class="icon24" (click)="onDeleteImage(0)">close</mat-icon>
+            </div>
+            <div *ngIf="urls[1]">
+                <img [src]="urls[1]" (click)="onOpenImageForm(1, 'undefined')">
+                <mat-icon id="push" class="icon24" (click)="onDeleteImage(1)">close</mat-icon>
+                </div>
+            <div *ngIf="urls[2]">
+                <img [src]="urls[2]" (click)="onOpenImageForm(2, 'undefined')">
+                <mat-icon id="push" class="icon24" (click)="onDeleteImage(2)">close</mat-icon>
+            </div>
+            <div *ngIf="urls[3]">
+                <img [src]="urls[3]" (click)="onOpenImageForm(3, 'undefined')">
+                <mat-icon id="push" class="icon24" (click)="onDeleteImage(3)">close</mat-icon>
+            </div>
+        </div> 
+
+        <div class="input-group mb-3 round" *ngIf="!requestTask.dateClose">
+            <textarea class="form-control" placeholder="Введите сообщение" aria-label="Введите сообщение" aria-describedby="basic-addon2" [(ngModel)]="message" (paste)="pastePicture($event)"></textarea>
+            <div class="input-group-append round">
+                <button mat-raised-button color="primary" class="round-but-input"
+                (click)="onPushMessage()"> Отправить </button>
+                                <!-- (click)="onPushMessage()" -->
+                                <!-- scrollable.scrollTo({bottom: 0})" -->
+
+                <button hidden #btScroll (click)="scrollable.scrollTo({bottom: 0})"> Отправить </button>
+            </div>
+        </div>
+    </div>
+</div >

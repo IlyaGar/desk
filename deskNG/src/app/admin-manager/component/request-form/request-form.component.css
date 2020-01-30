@@ -1,0 +1,19 @@
+.content {
+    margin: 0.5em;
+}
+button {
+    margin-top: 1em;
+}
+a {
+    width: 10em;
+}
+.mat-list-item {
+    min-height: 2em;
+    height: auto;
+}
+.message {
+    width: 80%;
+}
+mat-divider {
+    margin-bottom: 0.4em;
+}

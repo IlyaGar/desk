@@ -1,0 +1,17 @@
+<div class="content">
+    <mat-list>
+        <mat-list-item> <a> № заявки: </a> {{requestTask.id}} </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item> <a> Тема: </a> {{requestTask.theme}} </mat-list-item>
+        <mat-divider></mat-divider> 
+        <mat-list-item> <a> Автор: </a> {{requestTask.user}} </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item> <a> Объект: </a> {{requestTask.shop}} </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item> <a> Телефон: </a> {{requestTask.phone}} </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item> <a> Сообщение: </a> <div class="message">{{requestTask.messages[0].messageText}} </div> </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+    <button mat-raised-button color="primary" (click)="onAcceptTask()" matTooltip="Принять в работу"> Принять </button>
+</div>

@@ -1,0 +1,17 @@
+mat-icon#push48 {
+    position: relative;
+    top: -73vh;
+    left: 73vw;
+    font-size: 36px;
+}
+mat-icon#push48:hover {
+    font-size: 38px;
+    color: blueviolet;
+
+    cursor: pointer;
+}
+div {
+    width: 77vw;
+    height: 70vh;
+    overflow: auto;
+}

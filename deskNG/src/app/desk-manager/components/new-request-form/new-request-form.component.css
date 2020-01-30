@@ -1,0 +1,22 @@
+.content {
+    margin: 0.5em;
+}
+span {
+    width: 10em;
+}
+textarea {
+    min-height: 3em;
+    max-height: 10em;
+}
+.file-margin {
+    margin-top: 1em;
+}
+::ng-deep .mat-input-underline {
+    display: none !important;
+}
+.option-sel {
+    color: rgba(219, 29, 29, 0.6);
+}
+::ng-deep .mat-form-field-underline {
+    display: none;
+  }

@@ -1,0 +1,50 @@
+.content {
+    margin: 0.2em 2em;
+    height: calc(98vh - 3.5em);
+
+    padding: 0.5em 0.2em;
+}
+.ng-scrollbar {
+    height: calc(98vh - 3.5em) !important;
+}
+.list-item {
+    border-radius: 12px;
+    margin-bottom: 0.2em;
+}
+.scrollbar-box {
+    max-width: 70vw;
+}
+::ng-deep .custom-scrollbars {
+    background-color: rgb(94, 175, 255) !important;
+}
+::ng-deep .custom-scrollbars:hover, ::ng-deep .custom-scrollbars:active {
+    background-color: dodgerblue !important;
+}
+a {
+    height: 6.555em;
+    width: 98%;
+}
+small {
+    padding: 0;
+    margin: 0; 
+    color: rgba(0, 0, 0, 0.7);
+}
+small#mes-date {
+    position: relative;
+    top: -5px;
+}
+p {
+    width: calc(70vw - 9em);
+    white-space: nowrap; 
+    overflow: hidden;
+    padding-right: 5px;
+    text-overflow: ellipsis; /* Многоточие */
+}
+.mb-1 {
+    margin-bottom: 0 !important;
+}
+.content a:hover {
+    cursor: pointer;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgba(135, 206, 250, 0.45);
+} 

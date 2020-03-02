@@ -8,6 +8,7 @@ import { ChatService } from '../services/chat.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageFormComponent } from '../dialog-windows/image-form/image-form.component';
 import { Picture } from 'src/app/desk-manager/models/picture';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-form',
@@ -38,17 +39,22 @@ export class ChatFormComponent implements OnInit {
   styleNoConnect = 'red-snackbar';
 
   constructor(
+    private router: Router,
     public dialog: MatDialog,
     private chatService: ChatService,
     private tokenService: TokenService,
     private snackbarService: SnackbarService,
-  ) { }
+  ) {
+      // const navigation = this.router.getCurrentNavigation();
+      // const state = navigation.extras.state as { task: RequestTask };
+      // this.requestTaskId = state.task;
+
+      this.requestTask = this.router.getCurrentNavigation().extras.state.task;
+   }
 
   ngOnInit() {
-    this.requestTask;
     this.loadTasks();
     this.startTimer();
-    
   }
 
   ngOnDestroy() {

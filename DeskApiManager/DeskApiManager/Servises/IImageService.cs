@@ -9,6 +9,6 @@ namespace DeskApiManager.Servises
 {
     public interface IImageService
     {
-        Task<List<Picture>> SavePictures(List<IFormFile> formFiles);
+        Task<IEnumerable<Picture>> SavePictures(IEnumerable<IFormFile> formFiles);
     }
 }

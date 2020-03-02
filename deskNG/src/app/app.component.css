@@ -2,3 +2,9 @@
     padding: 0 0.5em !important;
     line-height: 26px !important;
 }
+mat-drawer {
+    width: 20%;
+}
+mat-drawer-container {
+    height: calc(100vh - 3.5em);
+}

@@ -39,10 +39,10 @@ export class NavbarFormComponent implements OnInit {
       if(loginFromCookie){
         this.loginResponse = loginFromCookie;
         this.isLogin = true;
-        if(this.loginResponse.adminCount === '1')
-          this.router.navigate(['/admin']);
-        else 
-          this.router.navigate(['/desk']);
+        // if(this.loginResponse.adminCount === '1')
+        //   this.router.navigate(['/admin']);
+        // else 
+        //   this.router.navigate(['/desk']);
       }
     }
     else {

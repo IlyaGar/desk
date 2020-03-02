@@ -25,6 +25,9 @@ import { AdminListAllFormComponent } from './admin-manager/component/admin-list-
 import { AdminListAcceptedFormComponent } from './admin-manager/component/admin-list-accepted-form/admin-list-accepted-form.component';
 import { RequestFormComponent } from './admin-manager/component/request-form/request-form.component';
 import { ArchiveAdminFormComponent } from './admin-manager/component/archive-admin-form/archive-admin-form.component';
+import { VerticalMenuFormComponent } from './vertical-menu/vertical-menu-form/vertical-menu-form.component';
+import { MyTasksFormComponent } from './desk-manager/components/my-tasks-form/my-tasks-form.component';
+import { ListTasksFormComponent } from './desk-manager/components/list-tasks-form/list-tasks-form.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import { ArchiveAdminFormComponent } from './admin-manager/component/archive-adm
     AdminListAcceptedFormComponent,
     RequestFormComponent,
     ArchiveAdminFormComponent,
+    VerticalMenuFormComponent,
+    MyTasksFormComponent,
+    ListTasksFormComponent,
   ],
   imports: [
     FormsModule,

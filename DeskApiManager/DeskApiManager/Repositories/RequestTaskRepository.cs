@@ -15,7 +15,7 @@ namespace DeskApiManager.Repositories
 
         public async Task<IEnumerable<RequestTask>> GetListRequestTaskByAdminsAsync(string login, string type)
         {
-            var result = new List<RequestTask>();
+            List<RequestTask> result = null;
 
             switch(type)
             {

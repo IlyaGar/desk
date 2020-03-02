@@ -14,7 +14,7 @@ namespace DeskApiManager.Servises
 
         public ImageService(IHostingEnvironment environment) => _hostingEnvironment = environment;
 
-        public async Task<List<Picture>> SavePictures(List<IFormFile> formFiles)
+        public async Task<IEnumerable<Picture>> SavePictures(IEnumerable<IFormFile> formFiles)
         {
             List<Picture> pictures = new List<Picture>();
             var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");

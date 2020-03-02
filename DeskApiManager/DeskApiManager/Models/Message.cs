@@ -14,6 +14,6 @@ namespace DeskApiManager.Models
         public string Date { get; set; }
         [JsonIgnore()]
         public RequestTask RequestTask { get; set; }
-        public ICollection<Picture> Pictures { get; set; }
+        public IEnumerable<Picture> Pictures { get; set; }
     }
 }

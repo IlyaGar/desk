@@ -1,0 +1,38 @@
+<mat-list>      
+    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === '1' }" 
+        (click)="router.navigate(['/desk/my-tasks']); selectValue = '1'"> 
+        Мои заявки 
+    </mat-list-item>
+    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === '2' }" 
+        (click)="router.navigate(['/desk/new-task']); selectValue = '2'"> 
+        Новая заявка 
+    </mat-list-item>
+    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === '3' }" 
+        (click)="selectValue = '3'"> 
+        Архив 
+    </mat-list-item>
+    <ng-container *ngIf="selectValue === '4'">
+        <mat-list-item id="last" role="listitem" [ngClass]="{ 'list-item-selected': selectValue === '4' }" 
+            (click)="selectValue = '4'"> 
+            <small> Тема: {{theme}} </small>
+        </mat-list-item>
+    </ng-container>
+</mat-list>
+<ng-container *ngIf="selectValue === '4'">
+    <div class="info">
+        <!-- <small>
+            Номер заявки: {{requestTask.id}} <br>
+            Администратор: {{requestTask.admin}}<br>
+            Статус: {{requestTask.status}}<br>
+            Дата открытия: {{requestTask.dateOpen}}
+            <ng-container *ngIf="requestTask.dateClose">
+                <br>
+                Дата закрытия: {{requestTask.dateClose}}
+            </ng-container>
+            <hr>
+        </small> -->
+        <div>
+            <button mat-stroked-button color="primary" (click)="onDecision()"> Решено </button>
+        </div>
+    </div>
+</ng-container>

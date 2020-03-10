@@ -41,7 +41,7 @@ namespace DeskApiManager.Repositories
         {
             var result = await _context.RequestTasks.Where(req => (req.User == login) && (req.DateClose == null)).Include(req => req.Messages).ToListAsync();
             result.ForEach(x => x.Messages = new List<Message>() { x.Messages.Last() });
-
+            
             return result;
         }
 

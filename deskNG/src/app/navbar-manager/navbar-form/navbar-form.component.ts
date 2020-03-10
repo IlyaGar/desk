@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment.prod';
 import { TokenService } from 'src/app/common/services/token.service';
 import { Location } from "@angular/common";
+import { ExchangeService } from 'src/app/common/services/exchange.service';
 
 @Component({
   selector: 'app-navbar-form',
@@ -28,6 +29,7 @@ export class NavbarFormComponent implements OnInit {
     private location: Location,
     private tokenService: TokenService,
     private cookieService: CookieService,
+    private exchangeServece: ExchangeService,
   ) { 
      this.tokenService.events$.subscribe(value => { this.isLogin = value } );
   }
@@ -39,6 +41,7 @@ export class NavbarFormComponent implements OnInit {
       if(loginFromCookie){
         this.loginResponse = loginFromCookie;
         this.isLogin = true;
+        this.tokenService.logEvent(true);
         // if(this.loginResponse.adminCount === '1')
         //   this.router.navigate(['/admin']);
         // else 
@@ -54,11 +57,22 @@ export class NavbarFormComponent implements OnInit {
   onLogOut() {
     this.isLogin = false;
     this.tokenService.deleteCookie();
+    // this.exchangeServece.emit_login(false);
+    this.tokenService.logEvent(false);
+
+    if(this.cookieService.check(this.cookieName)){
+      let fullData = this.cookieService.get(this.cookieName);
+      let loginFromCookie = JSON.parse(fullData);
+      if(loginFromCookie){
+        this.loginResponse = loginFromCookie;
+        this.isLogin = true;
+        this.tokenService.logEvent(true);
+      }
+    }
     this.router.navigate(['/login']); 
   }
 
   isPathActiv(path: string) {
-    let v = (path === this.location.path()) ? true : false;
     return (path === this.location.path()) ? true : false;
   }
 }

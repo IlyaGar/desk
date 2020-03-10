@@ -28,6 +28,7 @@ import { ArchiveAdminFormComponent } from './admin-manager/component/archive-adm
 import { VerticalMenuFormComponent } from './vertical-menu/vertical-menu-form/vertical-menu-form.component';
 import { MyTasksFormComponent } from './desk-manager/components/my-tasks-form/my-tasks-form.component';
 import { ListTasksFormComponent } from './desk-manager/components/list-tasks-form/list-tasks-form.component';
+import { EmptyFormComponent } from './common/components/empty-form/empty-form.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ListTasksFormComponent } from './desk-manager/components/list-tasks-for
     VerticalMenuFormComponent,
     MyTasksFormComponent,
     ListTasksFormComponent,
+    EmptyFormComponent,
   ],
   imports: [
     FormsModule,

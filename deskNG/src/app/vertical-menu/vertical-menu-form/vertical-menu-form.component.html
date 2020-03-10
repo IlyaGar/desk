@@ -1,24 +1,23 @@
 <mat-list>      
-    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === '1' }" 
-        (click)="router.navigate(['/desk/my-tasks']); selectValue = '1'"> 
+    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 1 }" 
+        (click)="redirectToMyTasks()"> 
         Мои заявки 
     </mat-list-item>
-    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === '2' }" 
-        (click)="router.navigate(['/desk/new-task']); selectValue = '2'"> 
+    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 2 }"
+        (click)="redirectToNewTask()"> 
         Новая заявка 
     </mat-list-item>
-    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === '3' }" 
-        (click)="selectValue = '3'"> 
+    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 5 }" 
+        (click)="redirectToArchive()"> 
         Архив 
     </mat-list-item>
     <ng-container *ngIf="selectValue === '4'">
-        <mat-list-item id="last" role="listitem" [ngClass]="{ 'list-item-selected': selectValue === '4' }" 
-            (click)="selectValue = '4'"> 
+        <mat-list-item id="last" role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 6 }" > 
             <small> Тема: {{theme}} </small>
         </mat-list-item>
     </ng-container>
 </mat-list>
-<ng-container *ngIf="selectValue === '4'">
+<ng-container *ngIf="selectValue === 6">
     <div class="info">
         <!-- <small>
             Номер заявки: {{requestTask.id}} <br>

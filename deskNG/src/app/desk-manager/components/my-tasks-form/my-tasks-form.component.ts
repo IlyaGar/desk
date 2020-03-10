@@ -66,4 +66,8 @@ export class MyTasksFormComponent implements OnInit {
     // this.theme = requestTask.theme;
     // this.requestTask = requestTask;
   }
+
+  ngOnDestroy() {
+    this.pauseTimer();
+  }
 }

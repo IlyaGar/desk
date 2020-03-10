@@ -6,6 +6,7 @@ import { AdminFormComponent } from './admin-manager/admin-form/admin-form.compon
 import { MyTasksFormComponent } from './desk-manager/components/my-tasks-form/my-tasks-form.component';
 import { NewRequestFormComponent } from './desk-manager/components/new-request-form/new-request-form.component';
 import { ChatFormComponent } from './chat-manager/chat-form/chat-form.component';
+import { EmptyFormComponent } from './common/components/empty-form/empty-form.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -14,7 +15,9 @@ const routes: Routes = [
   { path: 'desk/my-tasks', component: MyTasksFormComponent },
   { path: 'admin', component: AdminFormComponent },
   { path: 'desk/new-task', component: NewRequestFormComponent },
-  { path: 'desk/chat', component: ChatFormComponent }
+  { path: 'desk/chat', component: ChatFormComponent },
+  // { path: 'empty', component: EmptyFormComponent },
+  { path: 'desk/archive', component: EmptyFormComponent }
 ];
 
 @NgModule({

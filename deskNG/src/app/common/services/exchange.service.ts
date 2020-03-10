@@ -7,13 +7,21 @@ import { Subject } from 'rxjs';
 export class ExchangeService {
 
   private _subject = new Subject<any>();
+  private _subject_login = new Subject<any>();
 
   emit(event) {
     this._subject.next(event);
   }
 
   get events$ () {
-    let t = this._subject.asObservable();
     return this._subject.asObservable();
+  }
+
+  emit_login(event) {
+    this._subject_login.next(event);
+  }
+
+  get events_login$ () {
+    return this._subject_login.asObservable();
   }
 }

@@ -31,10 +31,15 @@ export class NavbarFormComponent implements OnInit {
     private cookieService: CookieService,
     private exchangeServece: ExchangeService,
   ) { 
-     this.tokenService.events$.subscribe(value => { this.isLogin = value } );
+      // this.tokenService.events$.forEach(value => { this.checkLogin(value); } );
+      this.exchangeServece.events_login$.forEach(value => { this.checkLogin(value); } );
   }
 
   ngOnInit() {
+    this.loginUser();
+  }
+
+  loginUser() {
     if(this.cookieService.check(this.cookieName)){
       let fullData = this.cookieService.get(this.cookieName);
       let loginFromCookie = JSON.parse(fullData);
@@ -42,10 +47,10 @@ export class NavbarFormComponent implements OnInit {
         this.loginResponse = loginFromCookie;
         this.isLogin = true;
         this.tokenService.logEvent(true);
-        // if(this.loginResponse.adminCount === '1')
-        //   this.router.navigate(['/admin']);
-        // else 
-        //   this.router.navigate(['/desk']);
+        if(this.loginResponse.adminCount === '1')
+          this.router.navigate(['/admin']);
+        else 
+          this.router.navigate(['/desk']);
       }
     }
     else {
@@ -57,9 +62,8 @@ export class NavbarFormComponent implements OnInit {
   onLogOut() {
     this.isLogin = false;
     this.tokenService.deleteCookie();
-    // this.exchangeServece.emit_login(false);
     this.tokenService.logEvent(false);
-
+    this.loginResponse = null;
     if(this.cookieService.check(this.cookieName)){
       let fullData = this.cookieService.get(this.cookieName);
       let loginFromCookie = JSON.parse(fullData);
@@ -70,6 +74,12 @@ export class NavbarFormComponent implements OnInit {
       }
     }
     this.router.navigate(['/login']); 
+  }
+
+  checkLogin(value) { 
+    this.isLogin = value;
+    if(this.isLogin)
+      this.loginUser();
   }
 
   isPathActiv(path: string) {

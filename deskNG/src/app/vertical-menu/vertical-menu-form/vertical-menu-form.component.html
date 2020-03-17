@@ -1,37 +1,59 @@
-<mat-list>      
-    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 1 }" 
-        (click)="redirectToMyTasks()"> 
-        Мои заявки 
-    </mat-list-item>
-    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 2 }"
-        (click)="redirectToNewTask()"> 
-        Новая заявка 
-    </mat-list-item>
-    <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 5 }" 
-        (click)="redirectToArchive()"> 
-        Архив 
-    </mat-list-item>
-    <ng-container *ngIf="selectValue === '4'">
-        <mat-list-item id="last" role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 6 }" > 
-            <small> Тема: {{theme}} </small>
+<mat-list> 
+    <ng-container *ngIf="!isAdmin">
+
+        <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 1 }" 
+            (click)="redirectToMyTasks()"> 
+            Мои заявки 
         </mat-list-item>
-    </ng-container>
+
+        <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 2 }"
+            (click)="redirectToNewTask()"> 
+            Новая заявка 
+        </mat-list-item>
+
+        <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 5 }" 
+            (click)="redirectToUserArchive()"> 
+            Архив 
+        </mat-list-item>
+
+        <ng-container *ngIf="selectValue === 6">
+            <mat-list-item id="last" role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 6 }"  > 
+                <small class="theme-item"> Тема: {{requestTask.theme}} </small>
+            </mat-list-item>
+        </ng-container>
+
+    </ng-container>  
+    <ng-container *ngIf="isAdmin">
+
+        <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 3 }" 
+            (click)="redirectToNewRawTasks()"> 
+            Не принятые задания
+        </mat-list-item>
+        
+        <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 4 }" 
+            (click)="redirectToMyInProcessTasks()"> 
+            Мои в работе
+        </mat-list-item>
+
+        <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 7 }" 
+            (click)="redirectToCreateNewObject()"> 
+            Новый объект 
+        </mat-list-item>
+
+        <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === 5 }" 
+            (click)="redirectToAdmineArchive()"> 
+            Архив 
+        </mat-list-item>
+
+    </ng-container>   
 </mat-list>
 <ng-container *ngIf="selectValue === 6">
     <div class="info">
-        <!-- <small>
-            Номер заявки: {{requestTask.id}} <br>
-            Администратор: {{requestTask.admin}}<br>
-            Статус: {{requestTask.status}}<br>
-            Дата открытия: {{requestTask.dateOpen}}
-            <ng-container *ngIf="requestTask.dateClose">
-                <br>
-                Дата закрытия: {{requestTask.dateClose}}
-            </ng-container>
-            <hr>
-        </small> -->
+        <app-theme-info-form [requestTask]="requestTask"></app-theme-info-form>
         <div>
-            <button mat-stroked-button color="primary" (click)="onDecision()"> Решено </button>
+            <ng-container *ngIf="requestTask.status !== 'decision'">
+                <button mat-stroked-button color="primary" (click)="onDecision()"> Решено </button>
+            </ng-container>
         </div>
     </div>
 </ng-container>

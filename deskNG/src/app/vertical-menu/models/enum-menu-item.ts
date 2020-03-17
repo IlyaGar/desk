@@ -1,8 +1,10 @@
 export enum MenuItem {
-    MyTasks = 1,
+    Main = 0,
+    MyTasks,
     NewTask,
-    RawTasks,
+    NewRawTasks,
     MyInProcess,
     Archive,
     Theme,
+    CreateNewObject,
 }

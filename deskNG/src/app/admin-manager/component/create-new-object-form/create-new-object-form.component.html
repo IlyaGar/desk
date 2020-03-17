@@ -1,0 +1,69 @@
+<mat-accordion>
+    <mat-expansion-panel    (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Объект
+            </mat-panel-title>
+            <mat-panel-description>
+                Создание нового объекта
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field class="object-form">
+            <mat-label> Объект </mat-label>
+            <input matInput type="text" [ngModel]="objectName" placeholder="Имя объекта" required name="obname" #obname="ngModel">
+            <button mat-button *ngIf="obname.value" matSuffix mat-icon-button aria-label="Clear" (click)="objectName=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <div *ngIf="obname.invalid && (obname.dirty || obname.touched)" class="alert alert-danger">
+            <div *ngIf="obname.errors.required"> Имя объект должно быть заполнено. </div>
+        </div>
+
+        <div class="bt-group">
+            <button mat-stroked-button color="primary" (click)="onCreateObject(obname.value)"> Создать </button>
+            <!-- <button mat-stroked-button (click)="onClear()"> Отмена </button> -->
+        </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel    (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Отдел
+            </mat-panel-title>
+            <mat-panel-description>
+                Создание нового отдела
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+            <mat-label> Объекты </mat-label>
+            <mat-select  [ngModel]="selectedObject" (ngModelChange)="selectObject($event)" required name="selobj" #selobj="ngModel">
+                <mat-option *ngFor="let object of objects" [value]="object">
+                    {{object}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="object-form">
+            <mat-label> Отдел </mat-label>
+            <input matInput type="text" [ngModel]="departmentName" placeholder="Имя отдела" required name="depname" #depname="ngModel">
+            <button mat-button *ngIf="departmentName" matSuffix mat-icon-button aria-label="Clear" (click)="departmentName=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <div *ngIf="selobj.invalid && (selobj.dirty || selobj.touched)" class="alert alert-danger">
+            <div *ngIf="selobj.errors.required"> Объект должен быть выбран. </div>
+        </div>
+        <div *ngIf="depname.invalid && (depname.dirty || depname.touched)" class="alert alert-danger">
+            <div *ngIf="depname.errors.required"> Имя отдела должно быть заполнено. </div>
+        </div>
+
+        <div class="bt-group">
+            <button mat-stroked-button color="primary" (click)="onCreateDepartment(depname.value)"> Создать </button>
+            <!-- <button mat-stroked-button (click)="onClear()"> Отмена </button> -->
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

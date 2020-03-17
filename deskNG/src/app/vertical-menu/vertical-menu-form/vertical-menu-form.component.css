@@ -27,6 +27,9 @@ mat-list-item:hover {
     height: 1.2em !important;
     height: auto;
 }
+.theme-item {
+    font-weight: 500;
+}
 .info {
     margin: 0 1em 1em 1em;
 }

@@ -1,0 +1,19 @@
+<small *ngIf="requestTask">
+    Номер заявки: {{requestTask.id}} <br>
+    Администратор: 
+    <ng-container *ngIf="requestTask.admin"> {{requestTask.admin}} </ng-container>
+    <ng-container *ngIf="!requestTask.admin"> нет </ng-container>
+    <br>
+    Статус: 
+    <ng-container *ngIf="requestTask.status === 'new'"> новое задание </ng-container>
+    <ng-container *ngIf="!requestTask.status === 'decision'"> решено </ng-container>
+    <ng-container *ngIf="!requestTask.status"> нет </ng-container>
+    
+    <br>
+    Дата открытия: {{requestTask.dateOpen}}
+    <ng-container *ngIf="requestTask.dateClose">
+        <br>
+        Дата закрытия: {{requestTask.dateClose}}
+    </ng-container>
+    <hr>
+</small>

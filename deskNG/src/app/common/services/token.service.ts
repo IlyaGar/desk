@@ -27,8 +27,8 @@ export class TokenService {
     if(this.cookieService.check(this.name)){
       let fullData = this.cookieService.get(this.name);
       let loginFromCookie = JSON.parse(fullData);
-      if(loginFromCookie){
-        return loginFromCookie.token
+      if(loginFromCookie) {
+        return loginFromCookie.token;
       }
     }
     else return false;
@@ -38,8 +38,21 @@ export class TokenService {
     if(this.cookieService.check(this.name)){
       let fullData = this.cookieService.get(this.name);
       let loginFromCookie = JSON.parse(fullData);
-      if(loginFromCookie){
-        return loginFromCookie.login
+      if(loginFromCookie) {
+        return loginFromCookie.login;
+      }
+    }
+    else return false;
+  }
+
+  getIsAdmin() {
+    if(this.cookieService.check(this.name)){
+      let fullData = this.cookieService.get(this.name);
+      let loginFromCookie = JSON.parse(fullData);
+      if(loginFromCookie) {
+        if(loginFromCookie.adminCount)
+          return loginFromCookie.adminCount;
+        else return '0';
       }
     }
     else return false;
@@ -48,6 +61,7 @@ export class TokenService {
   deleteCookie() {
     if(this.cookieService.check(this.name)){
       this.cookieService.delete(this.name);
+      // this.cookieService.delete(this.name,  ' / ' ,  ' localhost');
     }
   }
 }

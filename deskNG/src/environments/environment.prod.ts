@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  cookieName: 'user-store-mile',
+  cookieName: 'user-help-desk-mile',
   apiUrl:'http://192.168/',
 };

@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { AttentionFormComponent } from 'src/app/dialog-windows/attention-dialog/attention-form/attention-form.component';
 import { LoginService } from '../services/login.service';
 import { TokenService } from 'src/app/common/services/token.service';
+import { ExchangeService } from 'src/app/common/services/exchange.service';
 
 @Component({
   selector: 'app-login-form',
@@ -29,6 +30,7 @@ export class LoginFormComponent implements OnInit {
     private tokenService: TokenService,
     private loginService: LoginService,
     private cookieService: CookieService,
+    private exchangeServece: ExchangeService,
   ) { }
 
   ngOnInit() {
@@ -77,6 +79,7 @@ export class LoginFormComponent implements OnInit {
       this.setCookie(this.cookieName, this.loginResponse);
       this.isLogin = true;
       this.tokenService.logEvent(true);
+      this.exchangeServece.emit_login(true);
       this.router.navigate(['/desk']);
     }
     else {

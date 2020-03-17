@@ -17,15 +17,19 @@ export class AdminService {
     return this.http.put<RequestTask>(`${this.url}`, data);
   }
 
-  getRequestTasksOpenByAdmin(data: string): Observable<Array<RequestTask>> {
-    return this.http.get<Array<RequestTask>>(`${this.url +'/' + data + '/' + 'my'}`);
+  getRequestTasksOpenByAdmin(data: string, admin: string): Observable<Array<RequestTask>> {
+    return this.http.get<Array<RequestTask>>(`${this.url +'/' + data + '/' + admin + '/' + 'my'}`);
   }
 
-  getNewRequestTasksOpenByAdmin(data: string): Observable<Array<RequestTask>> {
-    return this.http.get<Array<RequestTask>>(`${this.url +'/' + data + '/' + 'new'}`);
+  getNewRequestTasksOpenByAdmin(data: string, admin: string): Observable<Array<RequestTask>> {
+    return this.http.get<Array<RequestTask>>(`${this.url +'/' + data + '/' + admin + '/' + 'new'}`);
   }
 
-  getArchive(data: string): Observable<Array<RequestTask>> {
-    return this.http.get<Array<RequestTask>>(`${this.url +'/' + data + '/' + 'archive'}`);
+  getArchive(data: string, admin: string): Observable<Array<RequestTask>> {
+    return this.http.get<Array<RequestTask>>(`${this.url +'/' + data + '/' + admin + '/' + 'archive'}`);
   }
+
+  // getRequestTasksInArchive(data: string, admin: string): Observable<Array<RequestTask>> {
+  //   return this.http.get<Array<RequestTask>>(`${this.urlRequest +'/' + data + '/' + admin + '/' + 'archive'}`);
+  // }
 }

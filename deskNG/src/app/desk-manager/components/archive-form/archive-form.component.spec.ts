@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminListAllFormComponent } from './admin-list-all-form.component';
+import { ArchiveFormComponent } from './archive-form.component';
 
-describe('AdminListAllFormComponent', () => {
-  let component: AdminListAllFormComponent;
-  let fixture: ComponentFixture<AdminListAllFormComponent>;
+describe('ArchiveFormComponent', () => {
+  let component: ArchiveFormComponent;
+  let fixture: ComponentFixture<ArchiveFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminListAllFormComponent ]
+      declarations: [ ArchiveFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminListAllFormComponent);
+    fixture = TestBed.createComponent(ArchiveFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

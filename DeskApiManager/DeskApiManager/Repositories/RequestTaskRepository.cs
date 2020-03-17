@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DeskApiManager.Context;
 using DeskApiManager.Models;
+using DeskApiManager.Models.Shop;
 using Microsoft.EntityFrameworkCore;
 
 namespace DeskApiManager.Repositories
@@ -37,11 +38,24 @@ namespace DeskApiManager.Repositories
             return result;
         }
 
+
+        public async Task<IEnumerable<RequestTask>> GetListRequestTaskByUserAsync(string login, string type)
+        {
+            if (type == "archive")
+            {
+                var result = await _context.RequestTasks.Where(req => (req.User == login) && (req.Status == "decision")).Include(req => req.Messages).ToListAsync();
+                result.ForEach(x => x.Messages = new List<Message>() { x.Messages.Last() });
+
+                return result;
+            }
+            else return null;
+        }
+
         public async Task<IEnumerable<RequestTask>> GetListRequestTasksAsync(string login)
         {
             var result = await _context.RequestTasks.Where(req => (req.User == login) && (req.DateClose == null)).Include(req => req.Messages).ToListAsync();
             result.ForEach(x => x.Messages = new List<Message>() { x.Messages.Last() });
-            
+
             return result;
         }
 
@@ -92,7 +106,8 @@ namespace DeskApiManager.Repositories
 
         private async Task<List<RequestTask>> GetListRequestTaskByAdminsArchiveAsync(string login)
         {
-            return await _context.RequestTasks.Where(req => (req.Admin == login) && (req.DateClose != null)).Include(req => req.Messages).ToListAsync();
+            return await _context.RequestTasks.Where(req => (req.DateClose != null)).Include(req => req.Messages).ToListAsync();
+            //return await _context.RequestTasks.Where(req => (req.Admin == login) && (req.DateClose != null)).Include(req => req.Messages).ToListAsync();
         }
     }
 }

@@ -5,6 +5,8 @@ import { DeskService } from '../../services/desk.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { ExchangeService } from 'src/app/common/services/exchange.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { RequestMenuItem } from '../../models/request-menu-item';
+import { MenuItem } from 'src/app/vertical-menu/models/enum-menu-item';
 
 @Component({
   selector: 'app-my-tasks-form',
@@ -57,14 +59,10 @@ export class MyTasksFormComponent implements OnInit {
   }
 
   openSelectedRequest(requestTask: RequestTask) {
-    this.exchangeServece.emit('4');
+    let requestMenuItem = new RequestMenuItem(requestTask, MenuItem.Theme);
+    this.exchangeServece.emit(requestMenuItem);
     const navigationExtras: NavigationExtras = { state: { task: requestTask }};
     this.router.navigate(['/desk/chat'], navigationExtras);
-
-
-    // this.selectValue  = '4';
-    // this.theme = requestTask.theme;
-    // this.requestTask = requestTask;
   }
 
   ngOnDestroy() {

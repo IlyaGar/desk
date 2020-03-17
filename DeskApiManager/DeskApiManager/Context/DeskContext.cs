@@ -1,4 +1,5 @@
 ﻿using DeskApiManager.Models;
+using DeskApiManager.Models.Shop;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace DeskApiManager.Context
         public DbSet<RequestTask> RequestTasks { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Picture> Pictures { get; set; }
-        public DbSet<Admin> Admins { get; set; }
+        public DbSet<AstomAdmin> AstomAdmins { get; set; }
+        public DbSet<Shop> Shops { get; set; }
+        public DbSet<Department> Departments { get; set; }
     }
 }

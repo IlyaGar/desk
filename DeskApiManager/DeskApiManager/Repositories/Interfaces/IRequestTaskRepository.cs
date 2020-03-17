@@ -10,6 +10,7 @@ namespace DeskApiManager.Repositories
     {
         Task<IEnumerable<RequestTask>> GetListRequestTasksAsync(string login);
         Task<IEnumerable<RequestTask>> GetListRequestTaskByAdminsAsync(string login, string type);
+        Task<IEnumerable<RequestTask>> GetListRequestTaskByUserAsync(string login, string type);
         Task<RequestTask> GetRequestTasksAsync(int id);
         Task<RequestTask> UpdateRequestTasksAsync(RequestTask requestTask);
         Task<RequestTask> UpdateRequestTaskStatusAsync(RequestTask requestTask);

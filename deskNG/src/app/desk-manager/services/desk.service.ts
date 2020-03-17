@@ -4,6 +4,7 @@ import { MessageToService } from '../models/message-to-service';
 import { Observable } from 'rxjs';
 import { RequestTask } from '../models/request-task';
 import { Message } from '../models/message';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class DeskService {
 
   private urlRequest = "https://localhost:44346/api/values";
   private urlMessage = "https://localhost:44346/api/messages";
+
+  private urlLogout = environment.apiUrl + "/wms/pushdctorder/";
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +28,10 @@ export class DeskService {
 
   getMessages(id: number): Observable<Array<Message>> {
     return this.http.get<Array<Message>>(`${this.urlMessage + '/' + id}`);
+  }
+
+  getRequestTasksInArchive(data: string, admin: string): Observable<Array<RequestTask>> {
+    return this.http.get<Array<RequestTask>>(`${this.urlRequest +'/' + data + '/' + admin + '/' + 'archive'}`);
   }
 
   putRequestTaskInDecision(data: RequestTask): Observable<RequestTask> {

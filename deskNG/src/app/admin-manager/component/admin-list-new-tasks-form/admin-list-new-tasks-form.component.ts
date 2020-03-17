@@ -1,18 +1,19 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RequestTask } from 'src/app/desk-manager/models/request-task';
-import { DeskService } from 'src/app/desk-manager/services/desk.service';
 import { TokenService } from 'src/app/common/services/token.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { AdminService } from '../../services/admin.service';
+import { RequestMenuItem } from 'src/app/desk-manager/models/request-menu-item';
+import { MenuItem } from 'src/app/vertical-menu/models/enum-menu-item';
+import { ExchangeService } from 'src/app/common/services/exchange.service';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin-list-all-form',
-  templateUrl: './admin-list-all-form.component.html',
-  styleUrls: ['./admin-list-all-form.component.css']
+  selector: 'admin-list-new-tasks-form',
+  templateUrl: './admin-list-new-tasks-form.component.html',
+  styleUrls: ['./admin-list-new-tasks-form.component.css']
 })
-export class AdminListAllFormComponent implements OnInit {
-
-  @Output() onDataSelected: EventEmitter<RequestTask> = new EventEmitter<RequestTask>();
+export class AdminListNewTasksFormComponent implements OnInit {
   
   timeLeft: number = 60;
   interval: any;
@@ -24,8 +25,10 @@ export class AdminListAllFormComponent implements OnInit {
   styleNoConnect = 'red-snackbar';
 
   constructor(
+    private router: Router,
     private adminService: AdminService,
     private tokenService: TokenService,
+    private exchangeServece: ExchangeService,
     private snackbarService: SnackbarService,
   ) { }
 
@@ -39,7 +42,7 @@ export class AdminListAllFormComponent implements OnInit {
   }
 
   loadTasks() {
-    this.adminService.getNewRequestTasksOpenByAdmin(this.tokenService.getLogin()).subscribe(response => {
+    this.adminService.getNewRequestTasksOpenByAdmin(this.tokenService.getLogin(), this.tokenService.getIsAdmin()).subscribe(response => {
       this.listTask = response.filter(x => x.status === 'new');
     }, 
     error => { 
@@ -58,7 +61,10 @@ export class AdminListAllFormComponent implements OnInit {
     clearInterval(this.interval);
   }
 
-  onOpenChat(requestTask: RequestTask) {
-    this.onDataSelected.emit(requestTask);
+  openSelectedRequest(requestTask: RequestTask) {
+    let requestMenuItem = new RequestMenuItem(requestTask, MenuItem.Theme);
+    this.exchangeServece.emit(requestMenuItem);
+    const navigationExtras: NavigationExtras = { state: { task: requestTask }};
+    this.router.navigate(['/admin/chat'], navigationExtras);
   }
 }

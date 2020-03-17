@@ -10,18 +10,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeskApiManager.Migrations
 {
     [DbContext(typeof(DeskContext))]
-    [Migration("20191213064735_UpdateDB")]
-    partial class UpdateDB
+    [Migration("20200316133901_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
+                .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DeskApiManager.Models.Admin", b =>
+            modelBuilder.Entity("DeskApiManager.Models.AstomAdmin", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,7 +31,7 @@ namespace DeskApiManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admins");
+                    b.ToTable("AstomAdmins");
                 });
 
             modelBuilder.Entity("DeskApiManager.Models.Message", b =>
@@ -99,6 +99,38 @@ namespace DeskApiManager.Migrations
                     b.ToTable("RequestTasks");
                 });
 
+            modelBuilder.Entity("DeskApiManager.Models.Shop.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<int?>("ShopId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShopId");
+
+                    b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("DeskApiManager.Models.Shop.Shop", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Shops");
+                });
+
             modelBuilder.Entity("DeskApiManager.Models.Message", b =>
                 {
                     b.HasOne("DeskApiManager.Models.RequestTask", "RequestTask")
@@ -111,6 +143,13 @@ namespace DeskApiManager.Migrations
                     b.HasOne("DeskApiManager.Models.Message", "Message")
                         .WithMany("Pictures")
                         .HasForeignKey("MessageId");
+                });
+
+            modelBuilder.Entity("DeskApiManager.Models.Shop.Department", b =>
+                {
+                    b.HasOne("DeskApiManager.Models.Shop.Shop", "Shop")
+                        .WithMany("Departments")
+                        .HasForeignKey("ShopId");
                 });
 #pragma warning restore 612, 618
         }

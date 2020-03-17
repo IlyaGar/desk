@@ -28,10 +28,12 @@ namespace DeskApiManager.Controllers
             return new JsonResult(await _repository.GetListRequestTasksAsync(login));
         }
 
-        [HttpGet("{login}/{type}")]
-        public async Task<JsonResult> Get([FromRoute] string login, string type)
+        [HttpGet("{login}/{admin}/{type}")]
+        public async Task<JsonResult> Get([FromRoute] string login, string admin, string type)
         {
-            return new JsonResult(await _repository.GetListRequestTaskByAdminsAsync(login, type));
+            if(admin == "1")
+                return new JsonResult(await _repository.GetListRequestTaskByAdminsAsync(login, type));
+            else return new JsonResult(await _repository.GetListRequestTaskByUserAsync(login, type));
         }
 
         [HttpPost]

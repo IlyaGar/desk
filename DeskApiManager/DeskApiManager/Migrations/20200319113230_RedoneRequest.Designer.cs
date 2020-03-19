@@ -4,14 +4,16 @@ using DeskApiManager.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DeskApiManager.Migrations
 {
     [DbContext(typeof(DeskContext))]
-    partial class DeskContextModelSnapshot : ModelSnapshot
+    [Migration("20200319113230_RedoneRequest")]
+    partial class RedoneRequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,9 +84,9 @@ namespace DeskApiManager.Migrations
 
                     b.Property<string>("DateOpen");
 
-                    b.Property<int?>("DepartmentId");
+                    b.Property<int>("DepartmentId");
 
-                    b.Property<int?>("ObjectId");
+                    b.Property<int>("ObjectId");
 
                     b.Property<string>("Phone");
 

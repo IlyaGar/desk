@@ -55,7 +55,8 @@ namespace DeskApiManager.Controllers
                 User = requestTaskToService.user,
                 Messages = new List<Message>() { message },
                 DateOpen = DateTime.Now.ToString(),
-                Shop = requestTaskToService.shop,
+                ObjectId = requestTaskToService.objectId,
+                DepartmentId = requestTaskToService.departmentId,
                 Phone = requestTaskToService.phone,
                 Admin = "",
                 Status = "new"

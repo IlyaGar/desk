@@ -5,6 +5,8 @@ import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { MessageToService } from '../../models/message-to-service';
 import { Status } from 'src/app/common/models/status';
 import { LoginResponse } from 'src/app/login-manager/models/login-response';
+import { Shop } from 'src/app/admin-manager/models/object-item';
+import { Department } from 'src/app/admin-manager/models/departnent';
 
 @Component({
   selector: 'app-new-request-form',
@@ -13,20 +15,25 @@ import { LoginResponse } from 'src/app/login-manager/models/login-response';
 })
 export class NewRequestFormComponent implements OnInit {
 
-  shops: string[] = [ "Выбрать...", "Долгиновский", "Брест", "Горка", "Независимости" ];
-  shopSelected: string = 'Выбрать...';
-  selectedValue: any;
-
   @Input() data: LoginResponse;
   
   theme: string ='';
   message: string ='';
   shop: string ='';
   phone: string ='';
+  department = '';
   fileToUpload: File = null;
   fileName: string = '';
   isDisabled: boolean = true;
   isInputTheme: boolean = true;
+  objects: Array<Shop> = [];
+  departments: Array<Department> = [];
+
+  selectedObjectItem: Shop;
+  selectedDepartmentItem: Department;
+
+  chooseObject = 'none';
+  chooseDepartment = 'none';
 
   messageNoConnect = 'Нет соединения, попробуйте позже.';
   messageStatusTrue = 'Ваша сообщение в обработке.';
@@ -40,6 +47,7 @@ export class NewRequestFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loadObjects();
   }
 
   onPushMessage() {
@@ -47,7 +55,7 @@ export class NewRequestFormComponent implements OnInit {
       let formData = new FormData(); 
       this.fileToUpload ? formData.append('file', this.fileToUpload, this.fileToUpload.name) : null;
       formData.append("message", JSON.stringify(
-        new MessageToService(this.tokenService.getToken(), undefined, this.tokenService.getLogin(), this.theme, this.message, '', this.phone)
+        new MessageToService(this.tokenService.getToken(), undefined, this.tokenService.getLogin(), this.theme, this.message, this.selectedObjectItem.id, this.selectedDepartmentItem.id, this.phone)
       ));
       console.log(formData.getAll('file'));
       console.log(formData.getAll('message'));
@@ -84,7 +92,24 @@ export class NewRequestFormComponent implements OnInit {
     }
   }
 
-  updateWorkout(event) {
-    this.selectedValue = event;
+  loadObjects() {
+    this.deskService.getObjects().subscribe(response => {
+      this.objects = response;
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
+    });
+  }
+
+  selectObject(event: Shop) {
+    this.chooseDepartment;
+    this.selectedObjectItem = event;
+    this.departments = this.selectedObjectItem.departments;
+    this.chooseDepartment = 'none';
+  }
+
+  selectDepartment(event: Department) {
+    this.selectedDepartmentItem = event;
   }
 }

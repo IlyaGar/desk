@@ -15,12 +15,22 @@ namespace DeskApiManager.Repositories
         private readonly DeskContext _context;
         public ShopRepository(DeskContext context) => _context = context;
 
+        public async Task<IEnumerable<Shop>> GetShopsAsync() => await _context.Shops.Include(shop => shop.Departments).ToListAsync();
+        //=> await _context.Shops.ToListAsync();
+
         public async Task<Status> CreateShopAsync(Shop shop)
         {
             _context.Shops.Add(shop);
             await _context.SaveChangesAsync();
 
             return new Status("Ok");
+        }
+        public async Task<Shop> UpdateShopAsync(Shop shop)
+        {
+            _context.Entry(shop).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return shop;
         }
 
         public async Task<Status> DeleteShopAsync(Shop shop)
@@ -30,7 +40,5 @@ namespace DeskApiManager.Repositories
 
             return new Status("Ok");
         }
-
-        public async Task<IEnumerable<Shop>> GetShopsAsync() => await _context.Shops.ToListAsync();
     }
 }

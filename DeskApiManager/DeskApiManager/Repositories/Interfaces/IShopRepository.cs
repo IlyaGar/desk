@@ -12,5 +12,6 @@ namespace DeskApiManager.Repositories.Interfaces
         Task<IEnumerable<Shop>> GetShopsAsync();
         Task<Status> CreateShopAsync(Shop shop);
         Task<Status> DeleteShopAsync(Shop shop);
+        Task<Shop> UpdateShopAsync(Shop shop);
     }
 }

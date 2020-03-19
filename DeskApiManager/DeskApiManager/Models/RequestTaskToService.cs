@@ -11,7 +11,8 @@ namespace DeskApiManager.Models
         public string user { get; set; }
         public string theme { get; set; }
         public string message { get; set; }
-        public string shop { get; set; }
+        public int objectId { get; set; }
+        public int departmentId { get; set; }
         public string phone { get; set; }
     }
 }

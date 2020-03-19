@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DeskApiManager.Context;
 using DeskApiManager.Repositories;
+using DeskApiManager.Repositories.Interfaces;
 using DeskApiManager.Servises;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -51,8 +52,10 @@ namespace DeskApiManager
             services.AddDbContext<DeskContext>(options => options.UseSqlServer(connection));
 
             services.AddScoped<IRequestTaskRepository, RequestTaskRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IMessangeRepository, MessangeRepository>();
-            services.AddScoped<IImageRepository, ImageRepository>(); 
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<IShopRepository, ShopRepository>();
             services.AddScoped<IImageService, ImageService>();
         }
 

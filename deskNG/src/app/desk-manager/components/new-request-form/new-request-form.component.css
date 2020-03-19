@@ -4,6 +4,9 @@
 span {
     width: 10em;
 }
+label {
+    width: 10em;
+}
 textarea {
     min-height: 3em;
     max-height: 10em;

@@ -2,40 +2,24 @@
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"> Тема сообщения </span>
+            <label class="input-group-text" id="basic-addon1" for="inputTheme"> Тема сообщения </label>
         </div>
-        <input type="text" class="form-control" aria-label="Theme" placeholder="Введите тему" aria-describedby="basic-addon1" [(ngModel)]="theme">
+        <input id="inputTheme" type="text" class="form-control" placeholder="Введите тему" aria-describedby="basic-addon1" [(ngModel)]="theme">
     </div>
     
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text"> Сообщение </span>
+            <label class="input-group-text" id="basic-addon1" for="inputMessage"> Сообщение </label>
         </div>
-        <textarea class="form-control" aria-label="Message" placeholder="Введите сообщение" [(ngModel)]="message"></textarea>
+        <textarea id="inputMessage" class="form-control" aria-label="Message" placeholder="Введите сообщение" [(ngModel)]="message"></textarea>
     </div>
-
-    <!-- <div class="input-group mb-3 file-margin">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="upload"> Загрузить файл </span>
-        </div>
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" id="file" aria-describedby="upload" (change)="handleFileInput($event.target.files)">
-            <label class="custom-file-label" for="file">
-                <ng-container *ngIf="!fileToUpload"> 
-                    Выберите файл
-                </ng-container>
-                <ng-container *ngIf="fileToUpload"> 
-                    {{fileToUpload.name}}
-                </ng-container>
-            </label>
-        </div>
-    </div> -->
 
     <div class="input-group mb-3 file-margin">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"> Загрузить файл </span>
+            <label class="input-group-text" id="basic-addon1" for="inputFile"> Загрузить файл </label>
         </div>
-        <input type="text" class="form-control" aria-label="Theme" placeholder="Вставте файл" aria-describedby="basic-addon1" [(ngModel)]="fileName" (paste)="pastePicture($event)">
+        <input type="text" id="inputFile" class="form-control" placeholder="Вставте файл" 
+                aria-describedby="basic-addon1" [(ngModel)]="fileName" (paste)="pastePicture($event)">
         <div class="input-group-append">
             <input hidden type="file" #onFileInput (change)="handleFileInput($event.target.files)"/>
             <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="onFileInput.click()" > Выбрать файл </button>
@@ -44,34 +28,43 @@
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text" for="inputGroupSelect01"> Магазин </span>
+            <label class="input-group-text" id="basic-addon1" for="inputObject"> Объект </label>
         </div>
-        <select class="custom-select" [(ngModel)]="shopSelected" (ngModelChange)="updateWorkout($event)">
-            <option *ngFor="let shop of shops" [value]="shop">
-                {{shop}}
+
+        <select id="inputObject" class="custom-select" [ngModel]="chooseObject" (ngModelChange)="selectObject($event)" >
+            <option [ngValue]="'none'" disabled> Выбрать.. </option>
+            <option *ngFor="let object of objects" [ngValue]="object">
+                {{object.name}}
             </option>
         </select>
-        <!-- <mat-form-field id="only" appearance="outline">
-            <mat-label>Группа</mat-label>
-            <mat-select  [(ngModel)]="groupid">
-                <mat-option *ngFor="let group of groups" [value]="group.id">
-                    {{group.name}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field> -->
     </div>
+    
+    <ng-container *ngIf="selectedObjectItem">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" id="basic-addon1" for="inputDepartment"> Отдел </label>
+            </div>
+            <select id="inputDepartment" class="custom-select" [(ngModel)]="chooseDepartment" (ngModelChange)="selectDepartment($event)">
+                <option [ngValue]="'none'" disabled> Выбрать.. </option>
+                <option *ngFor="let department of departments" [ngValue]="department">
+                    {{department.name}}
+                </option>
+            </select>
+        </div>
+    </ng-container>
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"> Телефон </span>
+            <label class="input-group-text" id="basic-addon1" for="inputPhone"> Телефон </label>
         </div>
-        <input type="text" class="form-control" aria-label="Theme" placeholder="Введите свой номер телефона" aria-describedby="basic-addon1" [(ngModel)]="phone">
+        <input type="text" id="inputPhone" class="form-control" placeholder="Введите свой номер телефона" 
+            aria-describedby="basic-addon1" [(ngModel)]="phone">
     </div>
 
-    <ng-container *ngIf="theme.length <= '0' || message.length <= '6'">
+    <ng-container *ngIf="theme.length <= 0 || message.length <= 6">
         <button mat-raised-button color="primary" disabled="isDisabled"> Отправить </button>
     </ng-container>
-    <ng-container *ngIf="theme.length > '0' && message.length > '6'">
+    <ng-container *ngIf="theme.length > 0 && message.length > 6">
         <button mat-raised-button color="primary" (click)="onPushMessage()" matTooltip="Отправить сообщение в обработку"> Отправить </button>
     </ng-container>
 </div>

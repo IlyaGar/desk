@@ -5,7 +5,8 @@ export class MessageToService{
         public user: string,
         public theme: string,
         public message: string,
-        public shop: string,
+        public objectId: number,
+        public departmentId: number,
         public phone: string,
     ){}
 }

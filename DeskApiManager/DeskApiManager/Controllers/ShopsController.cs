@@ -16,15 +16,18 @@ namespace DeskApiManager.Controllers
     {
         private readonly IShopRepository _repository;
 
-        public ShopsController(IShopRepository repository)
-        {
-            _repository = repository;
-        }
+        public ShopsController(IShopRepository repository) => _repository = repository;
 
         [HttpGet]
         public async Task<JsonResult> Get() => new JsonResult(await _repository.GetShopsAsync());
         
         [HttpPost]
         public async Task<Status> Post([FromBody] Shop shop) => await _repository.CreateShopAsync(shop);
+
+        [HttpPut]
+        public async Task<Shop> Put([FromBody] Shop shop) => await _repository.UpdateShopAsync(shop);
+
+        [HttpDelete]
+        public async Task<Status> Delete([FromBody] Shop shop) => await _repository.DeleteShopAsync(shop);
     }
 }

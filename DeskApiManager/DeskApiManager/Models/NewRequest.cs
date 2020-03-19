@@ -11,6 +11,7 @@ namespace DeskApiManager.Models
     {
         [FromForm(Name = "file")]
         public List<IFormFile> Files { get; set; }
+
         [FromForm(Name = "message")]
         public string Message { get; set; }
     }

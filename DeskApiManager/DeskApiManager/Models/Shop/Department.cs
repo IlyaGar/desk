@@ -11,7 +11,6 @@ namespace DeskApiManager.Models.Shop
         public int Id { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
-        [JsonIgnore()]
-        public Shop Shop { get; set; }
+        public int ShopId { get; set; }
     }
 }
